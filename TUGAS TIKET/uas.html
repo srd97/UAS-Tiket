@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UAS JS</title>
+  
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+<style>
+#panel1, #panel2, #panel3, #panel4, #flip1, #flip2, #flip3, #flip4 {
+width: 300px;
+height: 100px;
+    font-size: 18px;
+    text-align: center;
+}
+
+#panel1, #panel2, #panel3, #panel4 {
+    padding: 50px;
+    display: none;
+}
+.ng-hide {
+  height: 0;
+  width: 0;
+  background-color: transparent;
+  top:-200px;
+  left: 200px;
+  }
+body {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background-image: url(cew.jpg);
+}
+</style>
+</head>
+
+<body>
+
+<h1 align="center">Silahkan Pilih Tiket Anda</h1>
+
+<div ng-app="app" ng-controller="MainController">
+
+<div  ng-hide="myCheck1" style="border: solid 3px lavender;margin-left:350px;float:left;">
+<div id="flip1"><h2 id="try1" ng-click="ilang1()">Tiket Konser</h2></div>
+<div id="panel1" style="background-image:url();">
+<form class="form-horizontal" role="form">
+<img src="bhan.png" width="300" height="250" style="position:absolute;margin-left:-70px;margin-top:-20px;">
+    <div class="form-group">
+      <label class="col-sm-4 control-label">Nama Pembeli:</label>
+      <div class="col-sm-7">
+        <input class="form-control" id="nama" type="text" ng-model="nama">
+      </div>
+    </div>
+	 <div class="form-group">
+      <label class="col-sm-5 control-label">Nomer Identitas :</label>
+      <div class="col-sm-5">
+        <input class="form-control" ng-model="id" type="text" value="">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-4 control-label">Nama Band :</label>
+      <div class="col-sm-7">
+        <input class="form-control" id="namaband" type="text" ng-model="namaband">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-5 control-label">Tanggal Pemesanan :</label>
+      <div class="col-sm-2">
+       <input class="form-control" ng-model="tgl" type="text" placeholder="tanggal">
+      </div>
+	  <div class="col-sm-2">
+       <input class="form-control" ng-model="bln" type="text" placeholder="bulan">
+      </div>
+	  <div class="col-sm-2">
+       <input class="form-control" ng-model="thn" type="text" placeholder="tahun">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-4 control-label">Seat : </label>
+      <div class="col-sm-7">
+<form>
+  <select ng-model="seat">
+    <option value="">
+    <option value="Festival">Festival
+    <option value="VIP">VIP
+  </select>
+</form>
+	</div>
+    </div>
+	
+	<div id="meh" ng-show="meh"><br><br><br>
+	<h4 align="center"> Tiket Konser {{namaband}}</h4>
+<table align="center" class="table table-bordered">
+<tr>
+<td>Nama : </td>
+<td>{{ nama}}</td>
+</tr>
+<tr>
+<td>Nomer Identitas : </td>
+<td>{{ id}}</td>
+</tr>
+<tr>
+<td>Nama Band : </td>
+<td>{{ namaband}}</td>
+</tr>
+<tr>
+<tr>
+<td>Tanggal Pemesanan : </td>
+<td>{{tgl}} {{bln}} {{thn}}</td>
+</tr>
+<td>Seat : </td>
+<td>{{ seat}}</td>
+</tr>
+</table></div>
+
+<div align="center">
+<input type="button" class="btn btn-primary btn-block" onclick="buka()" value="PRINT"/>
+</div>
+</div>
+</form>
+</div>
+
+<script>
+function buka(){
+var printContent = document.getElementById('meh').innerHTML;
+var restorepage = document.body.innerHTML;
+document.body.innerHTML=printContent;
+window.print();
+document.body.innerHTML = restorepage;
+}
+  </script>
+
+<div  ng-hide="myCheck2" style="border: solid 3px lavenderblush;margin-right:350px;float:right;">
+<div id="flip2"><h2 id="try2"  ng-click="ilang2()">Tiket Kereta</h2></div>
+<div id="panel2" style="background-image:url();">
+<form class="form-horizontal" role="form">
+<img src="kai.jpg" width="400" height="300" style="position:absolute;margin-left:-150px;margin-top:-20px;">
+    <div class="form-group">
+      <label class="col-sm-5 control-label">Nama :</label>
+      <div class="col-sm-5">
+        <input class="form-control" ng-model="nama" type="text" value="">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-5 control-label">Nomer Identitas :</label>
+      <div class="col-sm-5">
+        <input class="form-control" ng-model="id" type="text" value="">
+      </div>
+    </div>
+	 <div class="form-group">
+      <label class="col-sm-5 control-label">Nama Kereta :</label>
+      <div class="col-sm-5">
+        <input class="form-control" ng-model="namakereta" type="text" value="">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-5 control-label">Kota Keberangkatan :</label>
+      <div class="col-sm-5">
+        <input class="form-control" ng-model="brkt" type="text" value="">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-5 control-label">Kota Tujuan :</label>
+      <div class="col-sm-5">
+        <input class="form-control" ng-model="tujuan" type="text" value="">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-5 control-label">Tanggal Berangkat :</label>
+      <div class="col-sm-2">
+       <input class="form-control" ng-model="tgl" type="text" placeholder="tanggal">
+      </div>
+	  <div class="col-sm-2">
+       <input class="form-control" ng-model="bln" type="text" placeholder="bulan">
+      </div>
+	  <div class="col-sm-2">
+       <input class="form-control" ng-model="thn" type="text" placeholder="tahun">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-5 control-label">Class</label>
+      <div class="col-sm-5">
+	  <select ng-model="clas" >
+     <option value="Ekonomi">Ekonomi</option>
+     <option value="Bisnis">Bisnis</option>
+	 <option value="Eksekutif">Eksekutif</option>
+    </select>
+	</div>
+    </div>
+	
+<div id="meh2" ng-show="mehh"><br><br><br>
+<h4 align="center"> Tiket Kereta {{namakereta}}</h4>
+<table align="center" class="table table-bordered">
+<tr>
+<td>Nama : </td>
+<td>{{ nama}}</td>
+</tr>
+<tr>
+<td>Nomer Identitas : </td>
+<td>{{id}}</td>
+</tr>
+<tr>
+<td>Nama Kereta : </td>
+<td>{{ namakereta}}</td>
+</tr>
+<tr>
+<td>Kota Keberangkatan :</td>
+<td>{{ brkt}}</td>
+</tr>
+<tr>
+<td>Kota Tujuan : </td>
+<td>{{ tujuan}}</td>
+</tr>
+<tr>
+<td>Tanggal Keberangkatan : </td>
+<td>{{tgl}} {{bln}} {{thn}}</td>
+</tr>
+<tr>
+<td>Kelas</td>
+<td>{{clas}}</td>
+</tr>
+</table></div>
+
+<div align="center">
+<input type="button" class="btn btn-primary btn-block" onclick="buka2()" value="PRINT"/>
+</div>
+</div>
+</form>
+</div>
+
+<script>
+function buka2(){
+var printContent = document.getElementById('meh2').innerHTML;
+var restorepage = document.body.innerHTML;
+document.body.innerHTML=printContent;
+window.print();
+document.body.innerHTML = restorepage;
+}
+  </script>
+  
+  
+<br><br>
+<div ng-hide="myCheck3" style="border: solid 3px lightcyan;margin-left:350px;float:left;">
+<div id="flip3"><h2 id="try3"  ng-click="ilang3()">Tiket Pesawat</h2></div>
+<div id="panel3" ">
+<form class="form-horizontal" role="form">
+<img src="pswt.jpg" width="450" height="350" style="position:absolute;margin-left:-130px;margin-top:20px;">
+    <div class="form-group">
+      <label class="col-sm-5 control-label">Nama :</label>
+      <div class="col-sm-5">
+        <input class="form-control" ng-model="nama" type="text" value="">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-5 control-label">Jenis Kelamin : </label>
+      <div class="col-sm-5">
+	  <select ng-model="gender">
+        <option value="Mr.">Laki-Laki</option>
+     <option value="Mrs.">Perempuan</option>
+    </select>
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-5 control-label">Nomer Identitas :</label>
+      <div class="col-sm-5">
+        <input class="form-control" ng-model="id" type="text" value="">
+      </div>
+    </div>
+	 <div class="form-group">
+      <label class="col-sm-5 control-label">Nama Maskapai :</label>
+      <div class="col-sm-5">
+	  <select ng-model="namapesawat">
+        <option value="Garuda">Garuda</option>
+     <option value="Lion">Lion</option>
+	 <option value="Sriwijaya">Sriwijaya</option>
+	 <option value="Batik">Batik</option>
+     <option value="Citilink">Citilink</option>
+	 <option value="Air Asia">Air Asia</option>
+    </select>
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-5 control-label">Kota Keberangkatan :</label>
+      <div class="col-sm-5">
+        <input class="form-control" ng-model="brkt" type="text" value="">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-5 control-label">Kota Tujuan :</label>
+      <div class="col-sm-5">
+        <input class="form-control" ng-model="tujuan" type="text" value="">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-5 control-label">Tanggal Berangkat :</label>
+      <div class="col-sm-2">
+       <input class="form-control" ng-model="tgl" type="text" placeholder="tanggal">
+      </div>
+	  <div class="col-sm-2">
+       <input class="form-control" ng-model="bln" type="text" placeholder="bulan">
+      </div>
+	  <div class="col-sm-2">
+       <input class="form-control" ng-model="thn" type="text" placeholder="tahun">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-5 control-label">Class : </label>
+      <div class="col-sm-5">
+	  <select ng-model="clas" >
+     <option value="Ekonomi">Ekonomi</option>
+     <option value="Bisnis">Bisnis</option>
+	 <option value="Eksekutif">Eksekutif</option>
+    </select>
+	</div>
+    </div>
+	
+<div id="meh3" ng-show="mehhh"><br><br><br>
+<h4 align="center"> Tiket Pesawat {{namapesawat}}</h4>
+<table align="center" class="table table-bordered">
+<tr>
+<td>Nama : </td>
+<td>{{gender}} {{nama}}</td>
+</tr>
+<tr>
+<td>Nomer Identitas : </td>
+<td>{{id}}</td>
+</tr>
+<tr>
+<td>Nama Maskapai : </td>
+<td>{{ namapesawat}}</td>
+</tr>
+<tr>
+<td>Kota Keberangkatan :</td>
+<td>{{ brkt}}</td>
+</tr>
+<tr>
+<td>Kota Tujuan : </td>
+<td>{{ tujuan}}</td>
+</tr>
+<tr>
+<td>Tanggal Keberangkatan : </td>
+<td>{{tgl}} {{bln}} {{thn}}</td>
+</tr>
+<tr>
+<td>Kelas</td>
+<td>{{clas}}</td>
+</tr>
+</table></div>
+
+<div align="center">
+<input type="button" class="btn btn-primary btn-block" onclick="buka3()" value="PRINT"/>
+</div>
+</div>
+</form>
+</div>
+
+<script>
+function buka3(){
+var printContent = document.getElementById('meh3').innerHTML;
+var restorepage = document.body.innerHTML;
+document.body.innerHTML=printContent;
+window.print();
+document.body.innerHTML = restorepage;
+}
+  </script>
+  
+
+<div  ng-hide="myCheck4" style="border: solid 3px lightgrey;margin-right:350px;float:right;">
+<div id="flip4"><h2 id="try4"  ng-click="ilang4()">Tiket Bioskop</h2></div>
+<div id="panel4" style="width:400px;height:200px;">
+<form class="form-horizontal" role="form">
+<img src="bios2.png" width="400" height="300" style="position:absolute;margin-left:-150px;margin-top:-20px;">
+    <div class="form-group">
+      <label class="col-sm-4 control-label">Nama Pembeli : </label>
+      <div class="col-sm-7">
+        <input class="form-control" id="nama" type="text" ng-model="nama">
+      </div>
+    </div>
+	 <div class="form-group">
+      <label class="col-sm-5 control-label">Nomer Identitas : </label>
+      <div class="col-sm-5">
+        <input class="form-control" ng-model="id" type="text" value="">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-4 control-label">Judul Film :</label>
+      <div class="col-sm-7">
+        <input class="form-control" id="namaband" type="text" ng-model="namafilm">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-5 control-label">Tanggal Tiket :</label>
+      <div class="col-sm-2">
+       <input class="form-control" ng-model="tgl" type="text" placeholder="tanggal">
+      </div>
+	  <div class="col-sm-2">
+       <input class="form-control" ng-model="bln" type="text" placeholder="bulan">
+      </div>
+	  <div class="col-sm-2">
+       <input class="form-control" ng-model="thn" type="text" placeholder="tahun">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-4 control-label">Jam Tayang : </label>
+      <div class="col-sm-7">
+<form>
+  <select ng-model="jam">
+    <option value="">
+    <option value="12.30">12.30
+    <option value="15.00">15.00
+	<option value="18.00">18.00
+    <option value="20.30">20.30
+  </select>
+</form>
+	</div>
+    </div>
+	<div class="form-group">
+      <label class="col-sm-4 control-label">Seat : </label>
+      <div class="col-sm-7">
+<form>
+  <select ng-model="seat">
+    <option value="">
+    <option value="Regular">Regular
+    <option value="VIP">VIP
+  </select>
+</form>
+	</div>
+    </div><br>
+	
+	<div id="meh4" ng-show="mehhhh"><br><br><br>
+	<h4 align="center"> Tiket Konser {{namaband}}</h4>
+<table align="center" class="table table-bordered">
+<tr>
+<td>Nama : </td>
+<td>{{ nama}}</td>
+</tr>
+<tr>
+<td>Nomer Identitas : </td>
+<td>{{ id}}</td>
+</tr>
+<tr>
+<td>Nama Band : </td>
+<td>{{ namaband}}</td>
+</tr>
+<tr>
+<tr>
+<td>Tanggal Pemesanan : </td>
+<td>{{tgl}} {{bln}} {{thn}}</td>
+</tr>
+<td>Jam Tayang : </td>
+<td>{{jam}}</td>
+</tr>
+<td>Seat : </td>
+<td>{{ seat}}</td>
+</tr>
+</table></div>
+
+<div align="center"><br>
+<input type="button" class="btn btn-primary btn-block" onclick="buka4()" value="PRINT"/>
+</div>
+</div>
+</form>
+</div>
+
+<script>
+function buka4(){
+var printContent = document.getElementById('meh4').innerHTML;
+var restorepage = document.body.innerHTML;
+document.body.innerHTML=printContent;
+window.print();
+document.body.innerHTML = restorepage;
+}
+  </script>
+
+
+<script>
+$(document).ready(function(){
+    $("#try1").click(function(){
+	$("#panel1").slideDown(500);
+		$("#flip1").animate({
+		right: '150px',
+            height: '40px',
+            width: '800px'
+        });
+		$("#panel1").animate({
+		right: '200px',
+            height: '400px',
+            width: '800px'
+        });
+    });
+});
+
+$(document).ready(function(){
+    $("#try2").click(function(){
+	$("#panel2").slideDown(500);
+		$("#flip2").animate({
+		right: '200px',
+            height: '45px',
+            width: '800px'
+        });
+		$("#panel2").animate({
+		right: '200px',
+            height: '400px',
+            width: '800px'
+        });
+    });
+});
+
+$(document).ready(function(){
+    $("#try3").click(function(){
+	$("#panel3").slideDown(500);
+		$("#flip3").animate({
+           right: '200px',
+            height: '45px',
+            width: '800px'
+        });
+		$("#panel3").animate({
+		right: '200px',
+            height: '400px',
+            width: '800px'
+        });
+    });
+});
+ 
+$(document).ready(function(){
+    $("#try4").click(function(){
+	$("#panel4").slideDown(500);
+		$("#flip4").animate({
+		right: '200px',
+            height: '45px',
+            width: '800px'
+        });
+		$("#panel4").animate({
+		right: '200px',
+            height: '400px',
+            width: '800px'
+        });
+    });
+});
+
+var app = angular.module('app',[]);
+app.controller('MainController', function($scope) { 
+$scope.ilang1 = function() { 
+  	$scope.myCheck2 = !$scope.myCheck2;
+	$scope.myCheck3 = !$scope.myCheck3;
+	$scope.myCheck4 = !$scope.myCheck4;
+	}
+$scope.ilang2 = function() { 
+  	$scope.myCheck1 = !$scope.myCheck1;
+	$scope.myCheck3 = !$scope.myCheck3;
+	$scope.myCheck4 = !$scope.myCheck4;
+	}
+$scope.ilang3 = function() { 
+  	$scope.myCheck2 = !$scope.myCheck2;
+	$scope.myCheck1 = !$scope.myCheck1;
+	$scope.myCheck4 = !$scope.myCheck4;
+	}
+$scope.ilang4 = function() { 
+  	$scope.myCheck2 = !$scope.myCheck2;
+	$scope.myCheck3 = !$scope.myCheck3;
+	$scope.myCheck1 = !$scope.myCheck1;
+	}
+	});
+</script>
+
+
+</body>
+</html>
